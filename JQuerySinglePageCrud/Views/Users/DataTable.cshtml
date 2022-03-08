@@ -1,0 +1,59 @@
+﻿@model IEnumerable<JQuerySinglePageCrud.Models.User>
+
+@{
+    ViewData["Title"] = "Users with DataTables";
+}
+
+<div class="card shadow">
+    <div class="card-header bg-primary text-light">
+        <h3 class="card-title float-start">@ViewData["Title"]</h3>
+        <div class="btn float-end mx-1 btn-light" onclick="modalAction('@Url.Action("Create", "Users")', '#actionModalBody' );">
+            <i class="fa fa-plus"></i> Create New
+        </div>
+        <div class="btn float-end mx-1 btn-warning" onclick="modalAction('@Url.Action("NonAnAction", "Users" )', '#actionModalBody' );">
+            <i class="fa fa-warning"></i> Not Found
+        </div>
+        <div class="btn float-end mx-1 btn-info" onclick="modalAction('@Url.Action("ChangePassword", "Users" )', '#actionModalBody' );">
+            <i class="fa fa-lock"></i> UnAuthorized
+        </div>
+        <div class="btn float-end mx-1 btn-danger" onclick="modalAction('@Url.Action("Details", "Users" )', '#actionModalBody' );">
+            <i class="fa fa-bomb"></i> Bad Request
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive" id="tableContainer">
+            <div style="height: 300px;"></div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="actionModal" tabindex="-1" aria-hidden="true" ajax-modal-container="#actionModalBody">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="container p-2" id="actionModalBody">
+                    <div style="height: 300px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            loadList();
+            $('#actionModal').AjaxModal();
+
+            $('#actionModal').on('hidden.bs.modal', function (e) {
+                loadList();
+            })
+        });
+        function loadList() {
+            $('#tableContainer').append('<div class="spinner-container"></div><div class="spinner-img"><img src="/img/loading.gif" /></div>');
+            $('#tableContainer').load("@Url.Action("List")", function () {
+                $('table').dataTable();
+            });
+        }
+
+    </script>
+}

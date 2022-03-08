@@ -1,0 +1,22 @@
+﻿@model JQuerySinglePageCrud.Models.User
+
+@{
+    Layout = "";
+}
+
+<h5>Details</h5>
+<hr />
+
+<div class="row">
+    <div class="col">
+        <partial name="~/Views/Alerts/Index.cshtml" />
+        <fieldset disabled="">
+            <partial name="~/Views/Users/Form.cshtml" />
+        </fieldset>
+        <hr />
+        <div class="btn btn-warning" onclick="modalAction('@Url.Action("Edit", "Users", new { id = Model.ID })', '#actionModalBody');">
+            <i class="fa fa-pen"></i>
+            Edit
+        </div>
+    </div>
+</div>

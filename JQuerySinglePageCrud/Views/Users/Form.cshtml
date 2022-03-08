@@ -1,0 +1,65 @@
+﻿@model JQuerySinglePageCrud.Models.User
+
+@{
+    Layout = "";
+}
+@Html.AntiForgeryToken()
+
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <div class="form-floating mb-3">
+            <input asp-for="FirstName" class="form-control" />
+            <label asp-for="FirstName" class="control-label"></label>
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="form-floating mb-3">
+            <input asp-for="LastName" class="form-control" />
+            <label asp-for="LastName" class="control-label"></label>
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="form-floating mb-3">
+            <input asp-for="Username" class="form-control" />
+            <label asp-for="Username" class="control-label"></label>
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="form-floating mb-3">
+            <input asp-for="Email" class="form-control" />
+            <label asp-for="Email" class="control-label"></label>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="form-floating mb-3">
+            <input asp-for="Phone" class="form-control" />
+            <label asp-for="Phone" class="control-label"></label>
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="form-floating mb-3">
+            <input asp-for="Location" class="form-control" />
+            <label asp-for="Location" class="control-label"></label>
+            <span asp-validation-for="Location" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="form-floating mb-3">
+            <input asp-for="Password" class="form-control" />
+            <label asp-for="Password" class="control-label"></label>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="form-group mb-3 form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+            </label>
+        </div>
+    </div>
+</div>

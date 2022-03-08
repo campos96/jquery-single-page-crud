@@ -1,0 +1,78 @@
+﻿@model IEnumerable<JQuerySinglePageCrud.Models.User>
+
+@{
+    Layout = "";
+}
+
+<table class="table" init-datatables="true">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                Options
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    <div onclick="modalAction('@Url.Action("Edit", "Users", new { id = item.ID})', '#actionModalBody');" class="btn btn-warning float-end mx-1">
+                        <i class="fa fa-pen"></i>
+                        Edit
+                    </div>
+                    <div onclick="modalAction('@Url.Action("Details", "Users", new { id = item.ID})', '#actionModalBody');" class="btn btn-secondary float-end mx-1">
+                        <i class="fa fa-eye"></i>
+                        Details
+                    </div>
+                    <div onclick="modalAction('@Url.Action("Delete", "Users", new { id = item.ID})', '#actionModalBody');" class="btn btn-danger float-end mx-1">
+                        <i class="fa fa-trash"></i>
+                        Delete
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

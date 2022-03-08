@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "";
+}
+
+@if (TempData["InfoMessage"] != null)
+{
+    <partial name="~/Views/Alerts/Info.cshtml" />
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <partial name="~/Views/Alerts/Success.cshtml" />
+}
