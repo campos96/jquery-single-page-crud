@@ -23,33 +23,35 @@ function modalAction(url, target) {
     $.ajax({
         url: url,
         data: [],
-        type: 'get' // ?
+        type: 'get'
     }).done(function (result) {
-
         if (result != null) {
             $(target).html(result);
         }
-    }).fail(function (xhr, status, error) {
-        console.log(error);
-        if (error == 'Not Found') {
-            $(target).html('<div class="row text-center m-5">\
-                                        <i class="fa-solid fa-8x p-5 fa-magnifying-glass"></i>\
-                                        <h1 class="display-1">Not Found</h1>\
-                                    </div>');
-        } else if (error == 'Unauthorized') {
-            $(target).html('<div class="row text-center m-5">\
-                                        <i class="fa-solid fa-8x p-5 fa-close"></i>\
-                                        <h1 class="display-1">Unauthorized</h1>\
-                                    </div>');
-        } else if (error == 'Bad Request') {
-            $(target).html('<div class="row text-center m-5">\
-                                        <i class="fa-solid fa-8x p-5 fa-triangle-exclamation"></i>\
-                                        <h1 class="display-1">Bad Request</h1>\
-                                    </div>');
+    }).fail(function (xhr) {
+        if (xhr.status == 404) {
+            $(target).html(
+                '<div class="row text-center m-5">\
+                    <i class="fa-solid fa-8x p-5 fa-magnifying-glass"></i>\
+                    <h1 class="display-1">Not Found</h1>\
+                </div>'
+            );
+        } else if (xhr.status == 401) {
+            $(target).html(
+                '<div class="row text-center m-5">\
+                    <i class="fa-solid fa-8x p-5 fa-close"></i>\
+                    <h1 class="display-1">Unauthorized</h1>\
+                </div>'
+            );
+        } else if (xhr.status == 400) {
+            $(target).html(
+                '<div class="row text-center m-5">\
+                    <i class="fa-solid fa-8x p-5 fa-triangle-exclamation"></i>\
+                    <h1 class="display-1">Bad Request</h1>\
+                </div>'
+            );
         }
+    }).always(function () {
+        $(modal).modal('show');
     });
-
-    $(modal).modal('show');
-
 }
-
